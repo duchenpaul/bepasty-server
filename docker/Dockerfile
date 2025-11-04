@@ -21,9 +21,9 @@ RUN true \
 ADD docker/init.sh /usr/local/bin/init.sh
 COPY --from=builder /app/env /app/env
 
-ENV WORKERS 4
-ENV LISTEN 0.0.0.0:8000
-ENV BEPASTY_CONFIG /etc/bepasty.conf
+ENV WORKERS=4
+ENV LISTEN=0.0.0.0:8000
+ENV BEPASTY_CONFIG=/etc/bepasty.conf
 ADD docker/autoconfig.py /etc/bepasty.conf
 
 USER paste
