@@ -1,4 +1,4 @@
-FROM python:3.9-slim AS builder
+FROM python:3.14-slim AS builder
 
 RUN true \
   && mkdir /app \
@@ -12,7 +12,7 @@ RUN /app/env/bin/pip install /usr/local/src/bepasty
 
 # ---
 
-FROM python:3.9-slim
+FROM python:3.14-slim
 
 RUN true \
   && mkdir /app \
