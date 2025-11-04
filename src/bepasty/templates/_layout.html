@@ -8,14 +8,16 @@
         <!-- Favicon -->
         <link rel="icon" href="{{ url_for('static', filename='app/favicon.ico') }}" type="image/x-icon">
 
-        <title>Bepasty</title>
+        <title>{% if config.SITENAME %}{{ config.SITENAME }}{% else %}Bepasty{% endif %}{% if page_title %} - {{ page_title }}{% endif %}</title>
 
         <!-- Bootstrap styles -->
         <link rel="stylesheet" href="{{ url_for('bepasty.xstatic', name='bootstrap', filename='css/bootstrap.min.css') }}" type="text/css">
         <!-- jQuery UI styles -->
         <link rel="stylesheet" href="{{ url_for('bepasty.xstatic', name='jquery_ui', filename='themes/smoothness/jquery-ui.css') }}" type="text/css">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="{{ url_for('bepasty.xstatic', name='font_awesome', filename='css/font-awesome.min.css') }}">
+        <!-- Font Awesome - load only what we need -->
+        <link rel="stylesheet" href="{{ url_for('bepasty.xstatic', name='font_awesome', filename='css/fontawesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('bepasty.xstatic', name='font_awesome', filename='css/solid.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('bepasty.xstatic', name='font_awesome', filename='css/regular.min.css') }}">
         <!-- Bepasty styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='app/css/style.css' ) }}" type="text/css">
         {% block extra_link %}{% endblock %}
@@ -31,7 +33,7 @@
                         <a class="navbar-brand" href="{{ url_for('bepasty.index') }}">
                             {{ config.SITENAME }}
                             <span class="navbar-text small">
-                                (Permissions:{% for permission, permission_icon in flaskg.icon_permissions %} <i class="fa fa-{{ permission_icon }}" title="{{ permission }}"></i>{% endfor %})
+                                (Permissions:{% for permission, permission_icon in flaskg.icon_permissions %} <i class="fas fa-{{ permission_icon }}" title="{{ permission }}"></i>{% endfor %})
                             </span>
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,11 +44,11 @@
                         <div class="collapse navbar-collapse" id="navbarHeader">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="https://bepasty-server.readthedocs.org/en/latest/">Documentation</a>
+                                    <a class="nav-link" href="https://bepasty-server.readthedocs.io/en/latest/">Documentation</a>
                                 </li>
                                 {% if may(LIST) %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url_for('bepasty.filelist') }}">List all Items</a>
+                                    <a class="nav-link" href="{{ url_for('bepasty.filelist') }}">List all items</a>
                                 </li>
                                 {% endif %}
                             </ul>
