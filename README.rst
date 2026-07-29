@@ -7,6 +7,43 @@ documents, ..., binary).
 The documentation is there:
 https://bepasty-server.readthedocs.org/en/latest/
 
+Development quickstart
+----------------------
+
+From a source checkout, use ``uv`` to create/update the development
+environment and start the built-in server:
+
+::
+
+  uv sync
+  BEPASTY_CONFIG="$PWD/var/bepasty-dev.conf" uv run bepasty-server --debug
+
+The referenced ``var/bepasty-dev.conf`` is a local development configuration
+with full permissions for anonymous users. Do not use it for production.
+
+Example of ``var/bepasty-dev.conf``
+
+::
+
+    # Local development configuration only.
+    # Grants full permissions to anonymous users. Do not use in production.
+
+    SITENAME = 'localhost'
+
+    SECRET_KEY = 'YqUFP_-MTycFOH0KtpZKo8G3_mCG_uhT62UA8kWy_5Phkf4GJfdYGFn2pjVXAmn-'
+
+    STORAGE = 'filesystem'
+    STORAGE_FILESYSTEM_DIRECTORY = './var/bepasty-storage'
+
+    # Allow the development server to work over plain HTTP.
+    SESSION_COOKIE_SECURE = False
+
+    # Full anonymous permissions: admin, list, upload/create, modify, read, delete.
+    DEFAULT_PERMISSIONS = 'admin,list,create,modify,read,delete'
+
+    # No login secrets are needed for this all-anonymous development setup.
+    PERMISSIONS = {}
+
 Features
 --------
 

@@ -36,16 +36,10 @@ Development
 
 ::
 
-    # Create a new virtualenv
-    virtualenv bepasty-server-env
-    # Activate the virtualenv
-    source bepasty-server-env/bin/activate
     # Clone the official bepasty-server (or your fork, if you want to send pull requests)
     git clone https://github.com/bepasty/bepasty-server.git
     cd bepasty-server
-    # This will use the current directory for the installed package.
-    # Very useful during development! It will also auto-reload when files are changed.
-    pip install -e .
+    # Create/update the development environment from the project metadata.
+    uv sync
     # Run the Bepasty server in debug mode. The server is reachable at http://127.0.0.1:5000
-    bepasty-server --debug
-
+    uv run bepasty-server --debug

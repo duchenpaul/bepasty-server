@@ -68,6 +68,12 @@ environment variable like this:
 
     BEPASTY_CONFIG=/srv/bepasty/bepasty.conf bepasty-server
 
+When working from a source checkout during development, use ``uv`` to run the server in the project's environment:
+
+::
+
+    BEPASTY_CONFIG=/srv/bepasty/bepasty.conf uv run bepasty-server --debug
+
 Important note:
 
 * Use an absolute path as value for BEPASTY_CONFIG.
